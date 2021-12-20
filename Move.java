@@ -2,19 +2,20 @@ public class Move {
 	public String name;
 	public int action;
 	public int damage;
-	public int attackIncrease;
-	public int defenseIncrease;
-	public int attackDecrease;
-	public int defenseDecrease;
-	public int evasivenessIncrease;
-	public int accuracyDecrease;
+	public double attackIncrease;
+	public double defenseIncrease;
+	public double attackDecrease;
+	public double defenseDecrease;
+	public double evasivenessIncrease;
+	public double accuracyDecrease;
 	
-	public Move(String name, int action, int amount) {
+	public Move(String name, int action, double amount) {
+		this.name = name;
 		this.action = action;
 		switch(action) {
 		
 		case 0:
-			this.damage = amount;
+			this.damage = (int) amount;
 			break;
 		case 1:
 			this.attackIncrease = amount;
