@@ -1,5 +1,5 @@
 public class Group {
-	public int population = 1000;
+	public int population = 500;
 	public Node[] nodes = new Node[population];
 	public int maxStat;
 	
@@ -17,7 +17,7 @@ public class Group {
 	
 	public void genZero() {
 		for (int i = 0; i < population; i++) {
-			nodes[i] = new Node(1000, 250, 250, 250, 250);
+			nodes[i] = new Node(maxStat, maxStat / 4, maxStat / 4, maxStat / 4, maxStat / 4);
 		}
 	}
 	
@@ -27,7 +27,10 @@ public class Group {
 		}
 		
 		for (int i = 0; i < population; i++) {
-			System.out.println(nodes[i].toString());
+			//System.out.println(nodes[i].toString());
+			for (int j = 0; j < 4; j++) {
+				System.out.println(nodes[i].moveSet[j].name);
+			}
 		}
 
 		Node[] nextGen = new Node[population];
@@ -42,10 +45,11 @@ public class Group {
 	}
 	
 	public static void main(String[] args) {
-		Group group = new Group(400);
+		Group group = new Group(1000);
 		group.genZero();
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			System.out.println("Generation " + i + ": ");
+			System.out.println("-----------------------------------");
 			group.generation();
 		}
 	}
