@@ -1,5 +1,6 @@
 public class Move {
 	public String name;
+	public Type type;
 	public int action;
 	public int damage;
 	public double attackIncrease;
@@ -9,9 +10,10 @@ public class Move {
 	public double evasivenessIncrease;
 	public double accuracyDecrease;
 	
-	public Move(String name, int action, double amount) {
+	public Move(String name, int action, double amount, int type) {
 		this.name = name;
 		this.action = action;
+		this.type = new Type(type);
 		switch(action) {
 		
 		case 0:
