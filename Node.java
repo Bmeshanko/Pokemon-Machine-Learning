@@ -15,6 +15,7 @@ public class Node {
 	public int maxStat;
 	public Move[] moveSet;
 	public int[] chances;
+	public Type type;
 	
 	public Node(int maxStat, int hp, int attack, int defense, int speed) {
 		int random = (int) (100 * Math.random());
@@ -32,6 +33,7 @@ public class Node {
 		this.evasiveness = 0;
 		this.accuracy = 0;
 		this.alive = true;
+		this.type = new Type();
 		
 		MoveSet ms = new MoveSet();
 		this.moveSet = ms.generate();
@@ -57,6 +59,7 @@ public class Node {
 		MoveSet ms = new MoveSet();
 		this.moveSet = ms.generate(node.getMoves());
 		this.chances = modifyChances(node.chances);
+		this.type = new Type(node.type);
 	}
 	
 	public int[] modifyChances(int[] chances) {
@@ -134,7 +137,9 @@ public class Node {
 			switch (move.action) {
 			
 			case 0:
-				enemy.hp -= 1 + (0.75 * (double) move.damage * (double) attack / enemy.defense);
+				enemy.hp -= 1 + (type.effectiveness(move.type, enemy.type) *
+						type.stab(move.type) * 0.5 *
+						(double) move.damage * (double) attack / enemy.defense);
 				break;
 			case 1:
 				if (this.attack / this.initAttack < 3) {
@@ -200,9 +205,10 @@ public class Node {
 		} else {
 			s += ", Lost Battle.\n";
 		}
-		s += moveSet[0].name + " " + moveSet[1].name + " " + moveSet[2].name + " " + moveSet[3].name + "\n";
+		s += "Moves: " + moveSet[0].name + " " + moveSet[1].name + " " + 
+		moveSet[2].name + " " + moveSet[3].name + " - Chances: ";
 		s += chances[0] + " " + chances[1] + " " + chances[2] + " " + chances[3] + "\n";
+		s += "Type: " + type.name + "\n";
 		return s;
 	}
 }
-
