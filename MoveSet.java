@@ -5,26 +5,26 @@ public class MoveSet {
 	
 	public MoveSet() {
 		this.moves = new Move[20];
-		moves[0] = new Move("Tickle", 0, 50);
-		moves[1] = new Move("Scratch", 0, 60);
-		moves[2] = new Move("Claw", 0, 70);
-		moves[3] = new Move("Slap", 0, 80);
-		moves[4] = new Move("Punch", 0, 90);
-		moves[5] = new Move("Kick", 0, 100);
-		moves[6] = new Move("Karate Chop", 0, 60);
-		moves[7] = new Move("Backhand", 0, 70);
-		moves[8] = new Move("Close Combat", 0, 80);
-		moves[9] = new Move("Uppercut", 0, 100);
-		moves[10] = new Move("Acid", 0, 60);
-		moves[11] = new Move("Sludge", 0, 70);
-		moves[12] = new Move("Poison Bomb", 0, 80);
-		moves[13] = new Move("Hyper Beam", 0, 110);
-		moves[14] = new Move("Rage", 1, 1.25);
-		moves[15] = new Move("Withdraw", 2, 1.25);
-		moves[16] = new Move("Growl", 3, 0.8);
-		moves[17] = new Move("Tail Whip", 4, 0.8);
-		moves[18] = new Move("Cloak", 5, 1);
-		moves[19] = new Move("Sand-Attack", 6, 1);
+		moves[0] = new Move("Tickle", 0, 50, 0);
+		moves[1] = new Move("Scratch", 0, 60, 0);
+		moves[2] = new Move("Claw", 0, 70, 0);
+		moves[3] = new Move("Slap", 0, 80, 0);
+		moves[4] = new Move("Punch", 0, 90, 0);
+		moves[5] = new Move("Kick", 0, 100, 0);
+		moves[6] = new Move("Karate Chop", 0, 60, 4);
+		moves[7] = new Move("Backhand", 0, 70, 4);
+		moves[8] = new Move("Close Combat", 0, 80, 4);
+		moves[9] = new Move("Uppercut", 0, 100, 4);
+		moves[10] = new Move("Acid", 0, 60, 7);
+		moves[11] = new Move("Sludge", 0, 70, 7);
+		moves[12] = new Move("Poison Bomb", 0, 80, 7);
+		moves[13] = new Move("Hyper Beam", 0, 110, 0);
+		moves[14] = new Move("Rage", 1, 1.25, 0);
+		moves[15] = new Move("Withdraw", 2, 1.25, 0);
+		moves[16] = new Move("Growl", 3, 0.8, 0);
+		moves[17] = new Move("Tail Whip", 4, 0.8, 0);
+		moves[18] = new Move("Cloak", 5, 1, 0);
+		moves[19] = new Move("Sand-Attack", 6, 1, 6);
 	}
 	
 	public Move[] generate(Move[] moveset) {
