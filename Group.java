@@ -27,9 +27,9 @@ public class Group {
 		}
 		
 		for (int i = 0; i < population; i++) {
-			//System.out.println(nodes[i].toString());
+			System.out.println(nodes[i].toString());
 			for (int j = 0; j < 4; j++) {
-				System.out.println(nodes[i].moveSet[j].name);
+				//System.out.println(nodes[i].moveSet[j].name);
 			}
 		}
 
