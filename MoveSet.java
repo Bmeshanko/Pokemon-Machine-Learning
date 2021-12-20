@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class MoveSet {
 	public Move[] moves;
 	
@@ -16,48 +18,62 @@ public class MoveSet {
 		moves[10] = new Move("Acid", 0, 60);
 		moves[11] = new Move("Sludge", 0, 70);
 		moves[12] = new Move("Poison Bomb", 0, 80);
-		moves[13] = new Move("Hyper Bean", 0, 150);
-		moves[14] = new Move("Rage", 1, 100);
-		moves[15] = new Move("Withdraw", 2, 100);
-		moves[16] = new Move("Growl", 3, 100);
-		moves[17] = new Move("Tail Whip", 4, 100);
-		moves[18] = new Move("Cloak", 5, 100);
-		moves[19] = new Move("Sand-Attack", 6, 100);
+		moves[13] = new Move("Hyper Beam", 0, 110);
+		moves[14] = new Move("Rage", 1, 1.25);
+		moves[15] = new Move("Withdraw", 2, 1.25);
+		moves[16] = new Move("Growl", 3, 0.8);
+		moves[17] = new Move("Tail Whip", 4, 0.8);
+		moves[18] = new Move("Cloak", 5, 1);
+		moves[19] = new Move("Sand-Attack", 6, 1);
 	}
 	
 	public Move[] generate(Move[] moveset) {
-		double random = Math.random();
-		if (random < 0.25) {
-			int move = (int) (4 * Math.random());
-			moveset[move] = randomMove(moveset);
+		Random random = new Random(System.nanoTime());
+		
+		Move[] modify = new Move[4];
+		for (int i = 0; i < 4; i++) {
+			modify[i] = moveset[i];
 		}
-		return moveset;
+		double r1 = random.nextDouble();
+		if (r1 < 0.25) {
+			int move = (int) (4 * random.nextDouble());
+			modify[move] = randomMove(modify);
+		}
+		return modify;
 	}
 	
 	public Move[] generate() {
 		int r1 = (int) (Math.random() * moves.length);
 		int r2 = (int) (Math.random() * moves.length);
-		while (r2 != r1) {
+		while (r2 == r1) {
 			r2 = (int) (Math.random() * moves.length);
 		}
 		int r3 = (int) (Math.random() * moves.length);
-		while (r3 != r1 && r3 != r2) {
+		while (r3 == r1 || r3 == r2) {
 			r3 =  (int) (Math.random() * moves.length);
 		}
 		int r4 = (int) (Math.random() * moves.length);
-		while (r4 != r1 && r4 != r2 && r4 != r3) {
+		while (r4 == r1 || r4 == r2 || r4 == r3) {
 			r4 = (int) (Math.random() * moves.length);
 		}
 		Move[] moveSet = {moves[r1], moves[r2], moves[r3], moves[r4]};
-		return moveSet;
+		return fix(moveSet);
 	}
 	
-	public Move randomMove(Move[] moveset) {
+	public Move randomMove(Move[] moveSet) {
 		int random = (int) (Math.random() * moves.length);
-		while (moves[random].equals(moveset[0]) || moves[random].equals(moveset[1]) ||
-				moves[random].equals(moveset[2]) || moves[random].equals(moveset[3])) {
+		while (moves[random].name.equals(moveSet[0].name) || moves[random].name.equals(moveSet[1].name) ||
+				moves[random].name.equals(moveSet[2].name) || moves[random].name.equals(moveSet[3].name)) {
 					random = (int) (Math.random() * moves.length);
 				}
 		return moves[random];
+	}
+	
+	public Move[] fix(Move[] moveSet) {
+		while (moveSet[0].action != 0 && moveSet[1].action != 0 
+				&& moveSet[2].action != 0 && moveSet[3].action != 0) {
+			moveSet[0] = randomMove(moveSet);
+		}
+		return moveSet;
 	}
 }
